@@ -125,19 +125,19 @@ QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 0 8px;
-    color: #9ec5ff;
+    color: #c4b5fd;
 }
 
 QPushButton {
-    background-color: #2d6cdf;
+    background-color: #7c3aed;
     color: white;
     border: none;
     border-radius: 8px;
     padding: 8px 16px;
     font-weight: 600;
 }
-QPushButton:hover  { background-color: #3a7af0; }
-QPushButton:pressed{ background-color: #1d57c2; }
+QPushButton:hover  { background-color: #8b5cf6; }
+QPushButton:pressed{ background-color: #6d28d9; }
 QPushButton:disabled { background-color: #444; color: #888; }
 QPushButton#secondary {
     background-color: #3a3a3a;
@@ -153,10 +153,10 @@ QComboBox {
     padding: 6px 10px;
     min-height: 24px;
 }
-QComboBox:hover { border-color: #2d6cdf; }
+QComboBox:hover { border-color: #7c3aed; }
 QComboBox QAbstractItemView {
     background-color: #2a2a2a;
-    selection-background-color: #2d6cdf;
+    selection-background-color: #7c3aed;
     border: 1px solid #404040;
 }
 
@@ -170,7 +170,7 @@ QCheckBox::indicator {
     background-color: #3a3a3a;
 }
 QCheckBox::indicator:checked {
-    background-color: #2d6cdf;
+    background-color: #7c3aed;
 }
 
 QSlider::groove:horizontal {
@@ -186,7 +186,7 @@ QSlider::handle:horizontal {
     border: 1px solid #cccccc;
 }
 QSlider::sub-page:horizontal {
-    background: #2d6cdf;
+    background: #7c3aed;
     border-radius: 3px;
 }
 
@@ -195,13 +195,25 @@ QLabel#imageDrop {
     border: 2px dashed #444;
     border-radius: 8px;
 }
+QLabel#brandTitle {
+    color: #f5f3ff;
+    font-size: 23pt;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding-top: 6px;
+}
+QLabel#brandSubtitle {
+    color: #a1a1aa;
+    font-size: 10pt;
+    padding-bottom: 4px;
+}
 QLabel#statusLabel {
     color: #b9b9b9;
     font-size: 10pt;
     font-style: italic;
 }
 QLabel#linkLabel {
-    color: #6ea8ff;
+    color: #a78bfa;
     text-decoration: underline;
 }
 
@@ -498,9 +510,7 @@ class MainWindow(QMainWindow):
         self._start_cb = start_cb
         self._destroy_cb = destroy_cb
 
-        self.setWindowTitle(
-            f"{modules.metadata.name} {modules.metadata.version} {modules.metadata.edition}"
-        )
+        self.setWindowTitle(f"{modules.metadata.name} — Desktop Studio")
         self.setMinimumSize(ROOT_WIDTH, ROOT_HEIGHT)
         self.resize(ROOT_WIDTH, ROOT_HEIGHT)
 
@@ -509,6 +519,17 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout(root)
         layout.setContentsMargins(16, 16, 16, 16)
         layout.setSpacing(12)
+
+        # Vine AI Studio brand header
+        brand = QLabel("VINE AI STUDIO")
+        brand.setObjectName("brandTitle")
+        brand.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(brand)
+
+        subtitle = QLabel("AI-powered media workspace")
+        subtitle.setObjectName("brandSubtitle")
+        subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(subtitle)
 
         # Source/Target row
         layout.addLayout(self._build_image_row())
@@ -531,11 +552,9 @@ class MainWindow(QMainWindow):
         self._status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self._status_label)
 
-        footer = QLabel("Deep Live Cam")
+        footer = QLabel("VINE AI STUDIO  •  DESKTOP MEDIA WORKSPACE")
         footer.setObjectName("linkLabel")
         footer.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        footer.setCursor(Qt.CursorShape.PointingHandCursor)
-        footer.mousePressEvent = lambda _e: webbrowser.open("https://deeplivecam.net")
         layout.addWidget(footer)
 
     # ── image row ────────────────────────────────────────────────────────
