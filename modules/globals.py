@@ -69,8 +69,8 @@ mask_size: float = 1.0             # Expansion factor for upper lip mask (relati
 mouth_mask_size: float = 0.0       # Mouth mask size (0-100; 0=off, 100=mouth to chin)
 
 # --- START: Added for Frame Interpolation ---
-enable_interpolation: bool = True # Toggle temporal smoothing
-interpolation_weight: float = 0  # Blend weight for current frame (0.0-1.0). Lower=smoother.
+enable_interpolation: bool = False # Disabled by default: whole-frame temporal blending causes ghosting/flicker during motion.
+interpolation_weight: float = 0.2  # Legacy whole-frame blend weight; keep disabled unless explicitly tested.
 # --- END: Added for Frame Interpolation ---
 
 # Face detection resolution (160, 320, or 640).
