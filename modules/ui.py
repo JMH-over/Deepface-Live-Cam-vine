@@ -1206,7 +1206,11 @@ class _ProcessingWorker(QThread):
         det_count = 0
         cached_target_face = None
         cached_many_faces = None
-        det_interval = max(1, round(self._fps * 0.08))
+        # Re-detect each captured frame. Reusing old absolute landmarks for ~80ms makes
+        # the face warp lag behind head motion and creates visible mapping jumps.
+        # If this is too slow on a device, add optical-flow tracking with periodic re-detection
+        # rather than reusing stale coordinates unchanged.
+        det_interval = 1
 
         while not self._stop.is_set():
             try:
