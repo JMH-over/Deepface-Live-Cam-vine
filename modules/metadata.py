@@ -1,3 +1,3 @@
-name = 'Deep-Live-Cam'
+name = 'Vine AI Studio'
 version = '2.1.5'
-edition = 'GitHub Edition'
+edition = 'Personal Edition'
